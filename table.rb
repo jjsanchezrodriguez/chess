@@ -7,14 +7,6 @@ class Table
 
 	def load_table_from_file
 		@tablero1 = IO.read("table_input.txt")
-		# @tablero.each do |filas|
-		# 	filas.each do |columnas|
-		# 		# @tablero[filas.to_i][columnas.to_i] = (filas + columnas).to_s
-		# 		puts filas
-		# 		puts columnas
-		# 	end
-			
-		# end
 		
 		puts @tablero1
 
@@ -27,26 +19,43 @@ class Table
 					@tablero[i][j] = "nil"
 				else
 					@tablero[i][j] = create_piece(type, i, j)
+					
 				end	
 				p += 3
 			end
-			
+			# binding.pry
 		end
 
 	end
 
 	def create_piece(type, i, j)
-		piece = Piece.new(type[0],type[1],i,j)	
+
+		case type[1]
+		when 'R'
+		   Rook.new(type[0],type[1],i,j)	
+		when 'N'
+		   Knight.new(type[0],type[1],i,j)
+		when 'B'
+		   Bishop.new(type[0],type[1],i,j)	
+		when 'Q'
+		   Queen.new(type[0],type[1],i,j)
+		when 'K'
+		   King.new(type[0],type[1],i,j)	
+		when 'P'
+		   Pawn.new(type[0],type[1],i,j)
+		end
+
 		
 	end
 
 	def show_table
 		8.times do |i|
 			8.times do |j|
-				if(@tablero[i][j]!="nil")
-					print "#{@tablero[i][j].color}#{@tablero[i][j].name}#{@tablero[i][j].posx}#{@tablero[i][j].posy} "
+				if(@tablero[i][j] == "nil")
+					print "--- "
 				else
-					print "---"
+	
+					print "#{@tablero[i][j].color}#{@tablero[i][j].name}#{@tablero[i][j].posx}#{@tablero[i][j].posy} "
 				end
 			end
 			puts

@@ -24,7 +24,7 @@ class Table
 			8.times do |j|
 				type = @tablero1[p..p + 3]
 				if (type[0] == "-")
-					@tablero[i][j] = "---"
+					@tablero[i][j] = "nil"
 				else
 					@tablero[i][j] = create_piece(type, i, j)
 				end	
@@ -43,10 +43,11 @@ class Table
 	def show_table
 		8.times do |i|
 			8.times do |j|
-				print "#{@tablero[i][j].color}#{@tablero[i][j].name}#{@tablero[i][j].posx}#{@tablero[i][j].posy} "
-				# print @tablero[i][j].name
-				# print @tablero[i][j].posx
-				# print @tablero[i][j].posy
+				if(@tablero[i][j]!="nil")
+					print "#{@tablero[i][j].color}#{@tablero[i][j].name}#{@tablero[i][j].posx}#{@tablero[i][j].posy} "
+				else
+					print "---"
+				end
 			end
 			puts
 		end

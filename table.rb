@@ -1,4 +1,5 @@
 require "pry"
+
 class Table
 	def initialize	
 		@tablero = Array.new(8) {Array.new(8)}
@@ -14,26 +15,40 @@ class Table
 		# 	end
 			
 		# end
+		
+		puts @tablero1
+
+
 		p = 0
 		8.times do |i|
 			8.times do |j|
 				type = @tablero1[p..p + 3]
-				@tablero[i][j] = create_piece(type, i, j)
+				if (type[0] == "-")
+					@tablero[i][j] = "---"
+				else
+					@tablero[i][j] = create_piece(type, i, j)
+				end	
+				p += 3
 			end
-			p += 3
+			
 		end
 
 	end
 
 	def create_piece(type, i, j)
-		piece = Piece.new("a","N","1","2")	
+		piece = Piece.new(type[0],type[1],i,j)	
+		
 	end
 
 	def show_table
 		8.times do |i|
 			8.times do |j|
-				puts @tablero[i][j]
+				print "#{@tablero[i][j].color}#{@tablero[i][j].name}#{@tablero[i][j].posx}#{@tablero[i][j].posy} "
+				# print @tablero[i][j].name
+				# print @tablero[i][j].posx
+				# print @tablero[i][j].posy
 			end
+			puts
 		end
 	end
 	

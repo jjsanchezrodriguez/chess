@@ -6,26 +6,6 @@ class Piece
 		@posx = posx
 		@posy = posy
 	end
-	
-	
-end
-
-
-class Rook < Piece
-	attr_accessor :name, :color, :posx, :posy
-	def initialize( color, name, posx, posy)
-		super(color, posx, posy)
-		@name = name
-	end	
-end
-
-
-class Knight < Piece
-	attr_accessor :name, :color, :posx, :posy
-	def initialize(color, name, posx, posy)
-		super(color, posx, posy)
-		@name = name
-	end
 end
 
 class Bishop < Piece
@@ -52,10 +32,3 @@ class King < Piece
 	end
 end
 
-class Pawn < Piece
-	attr_accessor :name, :color, :posx, :posy
-	def initialize(color, name, posx, posy)
-		super(color, posx, posy)
-		@name = name
-	end
-end

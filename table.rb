@@ -9,17 +9,13 @@ class Table
 	end
 
 	def load_table_from_file
-		@tablero1 = IO.read("table_input.txt")
+		tableroaux = IO.read("table_input.txt")
 
 		p = 0
 		8.times do |i|
 			8.times do |j|
-				type = @tablero1[p..p + 3]
-				if (type[0] == "-")
-					@tablero[i][j] = nil
-				else
-					@tablero[i][j] = create_piece(type, i, j)
-				end	
+				type = tableroaux[p..p + 3]
+				@tablero[i][j] = create_piece(type, i, j)
 				p += 3
 			end
 		end
@@ -39,6 +35,8 @@ class Table
 			   King.new(type[0],type[1],i,j)	
 			when 'P'
 			   Pawn.new(type[0],type[1],i,j)
+			else
+				nil   
 		end	
 	end
 
@@ -59,7 +57,7 @@ class Table
 		@play = []
 		# File.open('play_input.txt', 'r') do |f1|
 		#   while aux = f1.gets
-			aux = "a2 a3"
+			aux = "d7 d5"
 		    pos_ori = aux[0..1]
 		    pos_des = aux[3..4]
 		    pos_play_ori = map_pos_file(pos_ori)
@@ -80,11 +78,11 @@ class Table
 
 	def make_move(pos_play_ori, pos_play_des)
     	piece_ori = @tablero[pos_play_ori[0]] [pos_play_ori[1]]
+    	output = "ILEGAL"
     	if piece_ori.check_pos?(pos_play_ori,pos_play_des, @tablero)
-    		output_game(pos_play_ori, pos_play_des, "LEGAL")
-    	else
-    		output_game(pos_play_ori, pos_play_des, "ILEGAL")
+    		output = "LEGAL"
     	end
+    	output_game(pos_play_ori, pos_play_des, output)
 	end
 
 

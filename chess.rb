@@ -7,6 +7,7 @@ require_relative "pawn.rb"
 
 tablero = Table.new
 tablero.load_table_from_file
+  # tablero.show_table
 tablero.validator_play
 tablero.save_to_file
-# tablero.show_play
+ tablero.show_play

@@ -22,7 +22,7 @@ class Table
 	end
 
 	def create_piece(type, i, j)
-		case type[1]
+		case type[1].upcase
 			when 'R'
 			   Rook.new(type[0],type[1],i,j)	
 			when 'N'
@@ -57,7 +57,7 @@ class Table
 		@play = []
 		# File.open('play_input.txt', 'r') do |f1|
 		#   while aux = f1.gets
-			aux = "d7 d5"
+			aux = "c1 h6"
 		    pos_ori = aux[0..1]
 		    pos_des = aux[3..4]
 		    pos_play_ori = map_pos_file(pos_ori)
